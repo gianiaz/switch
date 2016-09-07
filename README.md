@@ -37,7 +37,7 @@ switch ui component for react
 ## Usage
 
 ```js
-var Switch = require('rc-switch');
+var Switch = require('react-rcswitch');
 var React = require('react');
 React.render(<Switch />, container);
 ```
