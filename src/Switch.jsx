@@ -11,6 +11,7 @@ const Switch = React.createClass({
     disabled: React.PropTypes.bool,
     checkedChildren: React.PropTypes.any,
     unCheckedChildren: React.PropTypes.any,
+    onBeforeClick: React.PropTypes.func,
     onChange: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
   },
@@ -51,7 +52,19 @@ const Switch = React.createClass({
     }
     this.props.onChange(checked);
   },
+  beforeChange() {
+    // return true;
+    if (confirm('Are you sure?')) {
+      this.doToggle();
+    }
+    return false;
+  },
   toggle() {
+    if (this.beforeChange()) {
+      this.doToggle();
+    }
+  },
+  doToggle() {
     const checked = !this.state.checked;
     this.setChecked(checked);
   },
@@ -73,8 +86,10 @@ const Switch = React.createClass({
     }
   },
   render() {
-    const {className, prefixCls, disabled,
-      checkedChildren, unCheckedChildren, ...restProps } = this.props;
+    const {
+            className, prefixCls, disabled,
+            checkedChildren, unCheckedChildren, ...restProps,
+          } = this.props;
     const checked = this.state.checked;
     const switchClassName = classNames({
       [className]: !!className,
@@ -84,12 +99,12 @@ const Switch = React.createClass({
     });
     return (
       <span {...restProps}
-        className={switchClassName}
-        tabIndex="0"
-        ref="node"
-        onKeyDown={this.handleKeyDown}
-        onClick={disabled ? noop : this.toggle}
-        onMouseUp={this.handleMouseUp}>
+            className={switchClassName}
+            tabIndex="0"
+            ref="node"
+            onKeyDown={this.handleKeyDown}
+            onClick={disabled ? noop : this.toggle}
+            onMouseUp={this.handleMouseUp}>
         <span className={`${prefixCls}-inner`}>
           {checked ? checkedChildren : unCheckedChildren}
         </span>

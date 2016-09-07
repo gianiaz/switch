@@ -1,7 +1,7 @@
 require('../assets/index.less');
 const React = require('react');
 const ReactDOM = require('react-dom');
-const Switch = require('rc-switch');
+const Switch = require('react-rcswitch');
 
 function onChange(value) {
   console.log('switch checked:' + value);
@@ -22,9 +22,9 @@ const Test = React.createClass({
   render() {
     return (<div style={{margin: 20}}>
       <Switch onChange={onChange}
-        disabled={this.state.disabled}
-        checkedChildren={'开'}
-        unCheckedChildren={'关'}
+              disabled={this.state.disabled}
+              checkedChildren={'Si'}
+              unCheckedChildren={'No'}
       />
       <div>
         <button onClick={this.toggle}>toggle disabled</button>

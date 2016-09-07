@@ -1,114 +1,118 @@
+@bg:#f00;
+@text:#000;
+@btnbg:#fff;
 @switchPrefixCls:rc-switch;
 
 @duration:.3s;
 
 .@{switchPrefixCls}{
-  position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  width: 44px;
-  height: 22px;
-  line-height: 20px;
-  vertical-align: middle;
-  border-radius: 20px 20px;
-  border: 1px solid #ccc;
-  background-color: #ccc;
-  cursor: pointer;
-  transition: all @duration cubic-bezier(0.35, 0, 0.25, 1);
+  position:relative;
+  display:inline-block;
+  box-sizing:border-box;
+  width:5em;
+  height:1.5em;
+  line-height:1.5em;
+  vertical-align:middle;
+  border-radius:0.2em;
+  border:1px solid @bg;
+  background-color:@bg;
+  cursor:pointer;
+  transition:all @duration cubic-bezier(0.35, 0, 0.25, 1);
 
-  &-inner {
-    color:#fff;
-    font-size: 12px;
-    position: absolute;
-    left:24px;
+  &-inner{
+    color:@text;
+    font-size:1em;
+    position:absolute;
+    left:3em;
   }
 
   &:after{
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    left: 2px;
-    top:1px;
-    border-radius: 50% 50%;
-    background-color: #ffffff;
-    content: " ";
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
-    transform: scale(1);
-    transition: left @duration cubic-bezier(0.35, 0, 0.25, 1);
-    animation-timing-function: cubic-bezier(0.35, 0, 0.25, 1);
-    animation-duration: @duration;
-    animation-name: rcSwitchOff;
+    position:absolute;
+    width:2.2em;
+    height:1.10em;
+    top:0.15em;
+    left:0.2em;
+    border-radius:0.2em;
+    background-color:@btnbg;
+    content:" ";
+    cursor:pointer;
+    box-shadow:0 2px 5px rgba(0, 0, 0, 0.26);
+    transform:scale(1);
+    transition:left @duration cubic-bezier(0.35, 0, 0.25, 1);
+    animation-timing-function:cubic-bezier(0.35, 0, 0.25, 1);
+    animation-duration:@duration;
+    animation-name:rcSwitchOff;
   }
 
   &:hover:after{
-    transform: scale(1.1);
-    animation-name: rcSwitchOn;
+    transform:scale(1.1);
+    animation-name:rcSwitchOn;
   }
 
-  &:focus {
-    box-shadow: 0 0 0 2px tint(#2db7f5, 80%);
-    outline: none;
+  &:focus{
+    box-shadow:0 0 0 2px tint(#2db7f5, 80%);
+    outline:none;
   }
 
   &-checked{
-    border: 1px solid #87d068;
-    background-color: #87d068;
+    border:1px solid #87d068;
+    background-color:#87d068;
 
-    .@{switchPrefixCls}-inner {
+    .@{switchPrefixCls}-inner{
       left:6px;
     }
 
     &:after{
-      left: 22px;
+      left:2.5em;
     }
   }
 
   &-disabled{
-    cursor: no-drop;
-    background: #ccc;
+    cursor:no-drop;
+    background:#ccc;
     border-color:#ccc;
 
     &:after{
-      background: #9e9e9e;
-      animation-name: none;
-      cursor: no-drop;
+      background:#9e9e9e;
+      animation-name:none;
+      cursor:no-drop;
     }
 
     &:hover:after{
-      transform: scale(1);
-      animation-name: none;
+      transform:scale(1);
+      animation-name:none;
     }
   }
 
-  &-label {
-    display: inline-block;
-    line-height: 20px;
-    font-size: 14px;
-    padding-left: 10px;
-    vertical-align: middle;
-    white-space: normal;
-    pointer-events: none;
-    user-select: text;
+  &-label{
+    display:inline-block;
+    line-height:20px;
+    font-size:14px;
+    padding-left:10px;
+    vertical-align:middle;
+    white-space:normal;
+    pointer-events:none;
+    user-select:text;
   }
 }
 
-@keyframes rcSwitchOn {
-  0% {
-    transform: scale(1);
+@keyframes rcSwitchOn{
+  0%{
+    transform:scale(1);
   }
-  50% {
-    transform: scale(1.25);
+  50%{
+    transform:scale(1.25);
   }
-  100% {
-    transform: scale(1.1);
+  100%{
+    transform:scale(1.1);
   }
 }
-@keyframes rcSwitchOff {
-  0% {
-    transform: scale(1.1);
+
+@keyframes rcSwitchOff{
+  0%{
+    transform:scale(1.1);
   }
-  100% {
-    transform: scale(1);
+  100%{
+    transform:scale(1);
   }
 }
